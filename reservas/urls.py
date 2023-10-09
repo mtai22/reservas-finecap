@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from sistema.views import reserva_remover, reserva_criar, reserva_listar, detalhe, index
+from sistema.views import reserva_remover, reserva_criar, reserva_listar, detalhe, index, reserva_filtrar
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('detalhe/<int:id>', detalhe, name= 'detalhe'),
     path ('reserva/criar/',reserva_criar, name='reserva_criar'),
     path('index', index, name='index'),
+    path ('reserva/filtrar/',reserva_filtrar, name='reserva_filtrar'),
+
 
 ]   

@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ReservaForm
 from .models import Reserva
+from .filter import ReservaFilter
+
 
 def reserva_listar(request):
     reservas = Reserva.objects.all()
@@ -38,6 +40,17 @@ def index(request):
     datas = data.objects.order_by("data")
     return render(request, 'reservas/form.html', {'form': form})
 
+
+def reserva_filtrar(request):
+    template_name = 'reservas/filter.html'
+    object_list = Reserva.objects.all()
+    reserva_filter = ReservaFilter(request.GET, queryset=object_list)
+
+    context = {
+        'object_list': object_list,
+        'filter': reserva_filter
+    }
+    return render(request, template_name, context)
 
 
 

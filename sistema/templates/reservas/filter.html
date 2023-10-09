@@ -1,0 +1,39 @@
+{% extends 'reservas/base.html' %}
+
+{% block center %}
+<div class="row">
+    <div class="col-md-4">
+      <form method="GET">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+      </form>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>cnpj</th>
+            <th>nome empresa</th>
+            <th>categoria empresa</th>
+            <th>quitado</th>
+            <th>stand</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in filter.qs %}
+            <tr>
+              <td>{{ obj.cnpj}}</td>
+              <td>{{ obj.nome_empresa}}</td>
+              <td>{{ obj.categoria_empresa}}</td>
+              <td>{{ obj.quitado}}</td>
+              <td>{{ obj.stand}}</td>
+          
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock %}
