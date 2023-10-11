@@ -27,5 +27,4 @@ urlpatterns = [
     path('index', index, name='index'),
     path ('reserva/filtrar/',reserva_filtrar, name='reserva_filtrar'),
 
-
 ]   

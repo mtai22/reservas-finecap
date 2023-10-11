@@ -2,14 +2,16 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ReservaForm
 from .models import Reserva
 from .filter import ReservaFilter
-
+from django.core.paginator import Paginator
 
 def reserva_listar(request):
     reservas = Reserva.objects.all()
-    context = {
-        'reservas': reservas
-    }
-    return render(request, 'reservas/detalhe.html', context)
+    
+    page_number = request.GET.get('page')
+    paginator = Paginator(reservas, 5)
+    page_obj = paginator.get_page(page_number)
+    return render(request, "reservas/filter.html", {"page_obj" : page_obj})
+    
 
 def reserva_remover(request, id):
     reserva = get_object_or_404(Reserva, id = id)
